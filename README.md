@@ -44,14 +44,6 @@ This project integrates **4 Chapa API endpoints**, proxied through Next.js Route
 - **Where used**: Super Admin Dashboard — "Verify Settlement Transfer" panel
 - **What it does**: Returns the current status and details of an outgoing bank settlement transfer
 
----
-
-## Why a Server-Side Proxy?
-
-All Chapa calls go through Next.js Route Handlers (`app/api/chapa/.../route.ts`) instead of being called directly from the browser. This keeps `CHAPA_SECRET_KEY` safely on the server — a visitor inspecting browser network traffic will only see calls to `localhost:3000/api/chapa/...` and never the actual secret.
-
----
-
 ## Running Locally
 
 ### 1. Clone and install
@@ -104,42 +96,3 @@ Backend data is simulated without a real database:
 - **Loading states** are handled throughout every component with skeleton placeholders
 - **Error states** show inline error panels with retry buttons
 
----
-
-## Folder Structure
-
-```
-chapa-frontend-assignment/
-├── app/
-│   ├── api/chapa/                # Server-side proxy route handlers
-│   │   ├── initialize/route.ts
-│   │   ├── verify/[tx_ref]/route.ts
-│   │   ├── banks/route.ts
-│   │   └── transfer-verify/[ref]/route.ts
-│   ├── dashboard/
-│   │   ├── layout.tsx            # Shared sidebar + navbar wrapper
-│   │   ├── user/page.tsx         # Merchant dashboard
-│   │   ├── admin/page.tsx        # Admin dashboard
-│   │   └── super-admin/page.tsx  # Super Admin dashboard
-│   ├── globals.css               # CSS variables and Tailwind config
-│   ├── layout.tsx                # Root layout with ThemeProvider
-│   └── page.tsx                  # Landing page with role picker
-├── components/
-│   ├── layout/                   # Sidebar, Navbar, RoleGuard
-│   ├── ui/                       # Badge, Button, Card, Toggle, Skeleton
-│   └── dashboard/                # WalletCard, TransactionList, TransactionForm,
-│                                 # UserTable, UserPaymentsSummary, BankList,
-│                                 # AdminForm, StatsPanel
-├── context/
-│   ├── AuthContext.tsx            # Role-based session management
-│   └── ThemeContext.tsx           # Light/dark mode persistence
-├── hooks/
-│   ├── useAuth.ts
-│   └── useTheme.ts
-├── services/
-│   ├── mockData.ts               # Seed data (users, transactions)
-│   ├── mockApi.ts                # Simulated async API wrappers
-│   └── chapaService.ts           # Client-side calls to /api/chapa/* proxy routes
-└── types/
-    └── index.ts                  # TypeScript interfaces (AppUser, Transaction, Bank)
-```
