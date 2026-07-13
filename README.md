@@ -59,10 +59,10 @@ npm install
 Create a `.env.local` file in the project root:
 
 ```env
-CHAPA_SECRET_KEY=CHASECK_TEST-your_actual_test_key_here
+CHAPA_SECRET_KEY=CHASECK_TEST_actual_test_key_here
 ```
 
-Get your test key from the [Chapa Dashboard](https://dashboard.chapa.co/) under Settings > API Keys.
+Get test key from the [Chapa Dashboard](https://dashboard.chapa.co/) under Settings > API Keys.
 
 
 ### 3. Start the dev server
@@ -71,7 +71,7 @@ Get your test key from the [Chapa Dashboard](https://dashboard.chapa.co/) under 
 npm run dev
 ```
 
-Open `http://localhost:3000` in your browser.
+Open `http://localhost:3000` in browser.
 
 ---
 
@@ -83,16 +83,4 @@ Open `http://localhost:3000` in your browser.
 3. Copy the `tx_ref` shown and paste it into the **Verify Transaction Status** panel — this calls `/api/chapa/verify/[tx_ref]`
 4. Switch to **Admin** role — the **Bank Directory** panel automatically calls `/api/chapa/banks`
 5. Switch to **Super Admin** role — enter any reference in **Verify Settlement Transfer** to call `/api/chapa/transfer-verify/[ref]`
-
-
----
-
-## Mock Data & Simulation
-
-Backend data is simulated without a real database:
-
-- **Users and transactions** are stored in `services/mockData.ts` as in-memory arrays
-- **API delays** are simulated using `async/await` with `mockApi.ts` wrappers that mimic database latency
-- **Loading states** are handled throughout every component with skeleton placeholders
-- **Error states** show inline error panels with retry buttons
 
