@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-chapa-green: #A8D92B;        
+  --color-chapa-green-hover: #96C224;  
+  --color-chapa-dark: #14171A;         
+  --color-chapa-white: #F7F8F5;        
+  --color-chapa-slate: #6B7280;        
+  --color-chapa-border-light: #E5E7EB; 
+  --color-chapa-border-dark: #2A2E35;  
+  
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+:root {
+  --background: #F7F8F5; 
+  --foreground: #14171A; 
+  --card-bg: #FFFFFF;
+  --card-border: #E5E7EB;
+  --transition-speed: 200ms;
+}
+
+.dark {
+  --background: #14171A; 
+  --foreground: #f7f8f5df; 
+  --card-bg: #1B1E22;    
+  --card-border: #2A2E35;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+*:focus-visible {
+  outline: 2px solid #A8D92B;
+  outline-offset: 2px;
+}
+
+
+@keyframes ledger-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1.4);
+  }
+}
+
+.ledger-line {
+  transform-origin: bottom;
+  animation: ledger-pulse 3s ease-in-out infinite;
+}
+
+.ledger-line:nth-child(2n) {
+  animation-delay: 0.5s;
+}
+
+.ledger-line:nth-child(3n) {
+  animation-delay: 1s;
+}
+
+/* Smooth toggle transition */
+.toggle-transition {
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms ease;
+}
