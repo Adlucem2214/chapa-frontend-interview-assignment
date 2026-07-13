@@ -13,7 +13,7 @@ interface ThemeContextType {
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('chapa_theme') as Theme;
@@ -25,12 +25,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         document.documentElement.classList.remove('dark');
       }
     } else {
-      // Fallback: Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        setTheme('dark');
-        document.documentElement.classList.add('dark');
-      }
+      // Default to dark theme when no saved preference
+      setTheme('dark');
+      document.documentElement.classList.add('dark');
     }
   }, []);
 
