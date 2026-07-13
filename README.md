@@ -49,7 +49,7 @@ This project integrates **4 Chapa API endpoints**, proxied through Next.js Route
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/chapa-frontend-interview-assignment
+git clone https://github.com/Adlucem2214/chapa-frontend-interview-assignment.git
 cd chapa-frontend-assignment
 npm install
 ```
